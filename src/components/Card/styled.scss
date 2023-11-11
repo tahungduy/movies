@@ -1,0 +1,19 @@
+.movie-card {
+  @apply bg-black pb-4 bg-opacity-70 shadow-md rounded-lg overflow-hidden max-w-md;
+
+  .poster {
+    @apply w-full h-3/4 object-cover;
+  }
+
+  .movie-name {
+    @apply text-lg font-bold text-white line-clamp-1 overflow-hidden text-ellipsis;
+  }
+
+  .rating {
+    @apply text-gray-500 font-bold;
+  }
+
+  .button-container {
+    @apply flex mt-4 justify-end;
+  }
+}
