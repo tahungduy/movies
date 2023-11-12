@@ -36,7 +36,8 @@ const MovieDetails: FC = () => {
           voteCount: response.vote_count,
           productionCompanies: response.production_companies,
         });
-      });
+      })
+      .catch((error) => console.error("Error fetching movie details: ", error));
   };
 
   return movieDetail ? (
@@ -51,7 +52,7 @@ const MovieDetails: FC = () => {
           <div className="title"> {movieDetail.name}</div>
           <tr className="genres">
             {movieDetail.genres.map((genre: Genre) => (
-              <td>{genre.name}</td>
+              <td key={genre.id}>{genre.name}</td>
             ))}
           </tr>
           <p className="rating">
@@ -64,7 +65,7 @@ const MovieDetails: FC = () => {
             <tr className="companies">
               {movieDetail.productionCompanies.map(
                 (productionCompany: ProductionCompany) => (
-                  <td>{productionCompany.name}</td>
+                  <td key={productionCompany.id}>{productionCompany.name}</td>
                 )
               )}
             </tr>

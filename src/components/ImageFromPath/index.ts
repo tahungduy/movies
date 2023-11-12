@@ -1,3 +1,3 @@
-import ImageFromPath from './ImageFromPath'
+import ImageFromPath from "./ImageFromPath";
 
-export default ImageFromPath
+export default ImageFromPath;

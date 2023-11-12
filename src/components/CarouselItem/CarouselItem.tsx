@@ -26,7 +26,7 @@ const CarouselItem: FC<CarouselItemProps> = (props: CarouselItemProps) => {
           onClick={() => navigate(`movie/${id}`)}
           childComponent={
             <>
-              Watch Now <Icon className="fa fa-arrow-right ml-4" />
+              More details <Icon className="fa fa-arrow-right ml-4" />
             </>
           }
         />

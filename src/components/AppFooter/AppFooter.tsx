@@ -1,9 +1,12 @@
+import { FunctionComponent } from 'react';
 import './styled.scss'
 
-export function AppFooter() {
+const AppFooter: FunctionComponent = () => {
   return <div className="footer">
     <div className="content">
       <p>&copy; 2023 FPT</p>
     </div>
   </div>;
 }
+
+export default AppFooter;

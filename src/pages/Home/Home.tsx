@@ -54,7 +54,7 @@ const Home: FC = () => {
         dispatch(moviesAction.addMovies(mapMovieResponse(response.results)));
         setIsMovieLoading(false);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   const getTrendingMovies = () => {
@@ -86,13 +86,15 @@ const Home: FC = () => {
         <h1 className="section-title flex-col-center ">Top movies</h1>
         {trendingMoviesCarouselItem.length > 0 && (
           <Slide
+            arrows
+
             nextArrow={
-              <Icon className="fa fa-arrow-right arrow-icon bg-black-opacity-70" />
+              <i className="fa fa-arrow-right arrow-icon bg-black-opacity-70"></i>
             }
             prevArrow={
-              <Icon className="fa fa-arrow-left arrow-icon bg-black-opacity-70" />
+              <i className="fa fa-arrow-left arrow-icon bg-black-opacity-70" ></i>
             }
-            duration={1000000}
+            duration={5000}
           >
             {trendingMoviesCarouselItem}
           </Slide>
