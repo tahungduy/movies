@@ -1,6 +1,6 @@
-import { MovieDetailResponse } from "types/movie";
+import { GetMovieDetailResponse } from "types/movie";
 
-export const movieMockObject: MovieDetailResponse = {
+export const movieMockObject: GetMovieDetailResponse = {
   adult: false,
   backdrop_path: "/r7DuyYJ0N3cD8bRKsR5Ygq2P7oa.jpg",
   budget: 60000000,

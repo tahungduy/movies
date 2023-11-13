@@ -5,7 +5,7 @@ import { movieDbServices } from "services/movieDbServices";
 import {
   Genre,
   MovieDetail,
-  MovieDetailResponse,
+  GetMovieDetailResponse,
   ProductionCompany,
 } from "types/movie";
 import "./styled.scss";
@@ -24,7 +24,7 @@ const MovieDetails: FC = () => {
     if (id === undefined) return;
     movieDbServices
       .getMovieDetails(id)
-      .then((response: any) => {
+      .then((response: GetMovieDetailResponse) => {
         setMovieDetail({
           id: response.id,
           backdropPath: response.backdrop_path,

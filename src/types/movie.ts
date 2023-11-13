@@ -71,7 +71,7 @@ export interface MovieResponse {
   vote_count: number;
 }
 
-export interface MovieDetailResponse extends MovieResponse {
+export interface GetMovieDetailResponse extends MovieResponse {
   budget: number;
   genres: Genre[];
   homepage: string | null;
