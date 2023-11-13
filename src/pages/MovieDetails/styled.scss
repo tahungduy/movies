@@ -24,8 +24,9 @@
 
   .genres,
   .companies {
-    td {
-      @apply border-r-2 border-white px-2 text-white font-semibold leading-3;
+    @apply flex;
+    li {
+      @apply border-r-2 border-white px-2 text-white font-semibold leading-5;
 
       &:first-child {
         @apply pl-0;

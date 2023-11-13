@@ -20,8 +20,8 @@ const Card: FC<Props> = (props) => {
       <div className="p-4 ">
         <h4 className="movie-name">{movie?.name}</h4>
         <p className="rating">
-          {`Vote average: `}
-          <span className="text-yellow-400">{movie?.rating}</span>
+          Vote average:
+          <span className="pl-1 text-yellow-400">{movie?.rating}</span>
         </p>
         <div className="button-container">
           <Button

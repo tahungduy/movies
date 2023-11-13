@@ -50,25 +50,25 @@ const MovieDetails: FC = () => {
       <div className="bg-black-opacity-70 movie-details-container">
         <div className="col-span-3 p-32">
           <div className="title"> {movieDetail.name}</div>
-          <tr className="genres">
+          <ul className="genres">
             {movieDetail.genres.map((genre: Genre) => (
-              <td key={genre.id}>{genre.name}</td>
+              <li key={genre.id}>{genre.name}</li>
             ))}
-          </tr>
+          </ul>
           <p className="rating">
-            {`Vote average: `}
-            <span className="text-yellow-400">{movieDetail?.rating}</span>
+            Vote average
+            <span className="pl-1 text-yellow-400">{movieDetail?.rating}</span>
           </p>
           <div className="description">{movieDetail.description}</div>
           <div>
             <p className="produced-by">Produced by:</p>
-            <tr className="companies">
+            <ul className="companies">
               {movieDetail.productionCompanies.map(
                 (productionCompany: ProductionCompany) => (
-                  <td key={productionCompany.id}>{productionCompany.name}</td>
+                  <li key={productionCompany.id}>{productionCompany.name}</li>
                 )
               )}
-            </tr>
+            </ul>
           </div>
         </div>
         <div className="col-span-2 flex">

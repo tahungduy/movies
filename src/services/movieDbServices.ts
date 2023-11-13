@@ -8,21 +8,21 @@ class MovieDbServices {
   }
   public getTrendingMovies = async (): Promise<GetMovieResponse> => {
     const response = await this.client.get<GetMovieResponse>(
-      `trending/movie/day?language=en-US`
+      `trending/movie/day?language=en-US`,
     );
     return response?.data;
   };
 
   public getMovies = async (page: number): Promise<GetMovieResponse> => {
     const response = await this.client.get<GetMovieResponse>(
-      `discover/movie?page=${page}&sort_by=popularity.desc`
+      `discover/movie?page=${page}&sort_by=popularity.desc`,
     );
     return response?.data;
   };
 
   public getMovieDetails = async (movieId: string): Promise<any> => {
     const response = await this.client.get<GetMovieDetailResponse>(
-      `movie/${movieId}`
+      `movie/${movieId}`,
     );
     return response?.data;
   };
@@ -31,5 +31,5 @@ class MovieDbServices {
 export const movieDbServices = new MovieDbServices(
   buildClient({
     baseURL: process.env.REACT_APP_BASE_URL,
-  })
+  }),
 );
