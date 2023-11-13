@@ -1,3 +1,3 @@
-import AppScreen from "./decorator";
+import AppScreen from './decorator';
 
 export default AppScreen;

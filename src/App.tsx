@@ -3,7 +3,7 @@ import "./App.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AppHeader } from "./components/AppHeader";
 import { Provider } from "react-redux";
-import { store } from "redux/store";
+import { store } from "services/store";
 
 import AppFooter from "components/AppFooter";
 
@@ -29,7 +29,7 @@ const App: FunctionComponent = () => {
           </div>
         </Router>
       </Provider>
-    </div>
+    </div >
   );
 }
 

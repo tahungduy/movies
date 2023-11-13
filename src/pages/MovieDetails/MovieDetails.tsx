@@ -8,7 +8,6 @@ import {
   GetMovieDetailResponse,
   ProductionCompany,
 } from "types/movie";
-import "./styled.scss";
 import ImageFromPath from "components/ImageFromPath";
 
 const MovieDetails: FC = () => {
@@ -42,30 +41,30 @@ const MovieDetails: FC = () => {
 
   return movieDetail ? (
     <div
-      className="bg-image-movie-details"
+      className="w-full h-full bg-cover bg-no-repeat bg-center"
       style={{
         backgroundImage: `url(${imgURLPath}${movieDetail.backdropPath}`,
       }}
     >
-      <div className="bg-black-opacity-70 movie-details-container">
+      <div className="bg-black bg-opacity-70 w-full grid grid-cols-5 h-full overflow-hidden">
         <div className="col-span-3 p-32">
-          <div className="title"> {movieDetail.name}</div>
-          <ul className="genres">
+          <div className="text-white font-sans text-4xl font-bold leading-none m-4 ml-0"> {movieDetail.name}</div>
+          <ul className="flex">
             {movieDetail.genres.map((genre: Genre) => (
-              <li key={genre.id}>{genre.name}</li>
+              <li className="rounded-lg bg-slate-500 bg-opacity-70 mr-4 px-2 text-white leading-10" key={genre.id}>{genre.name}</li>
             ))}
           </ul>
-          <p className="rating">
-            Vote average
+          <p className="text-white font-bold">
+            Vote average:
             <span className="pl-1 text-yellow-400">{movieDetail?.rating}</span>
           </p>
-          <div className="description">{movieDetail.description}</div>
+          <div className="text-white font-sans text-xl font-semibold m-6 ml-0">{movieDetail.description}</div>
           <div>
-            <p className="produced-by">Produced by:</p>
-            <ul className="companies">
+            <p className="text-white font-bold">Produced by:</p>
+            <ul className="flex">
               {movieDetail.productionCompanies.map(
                 (productionCompany: ProductionCompany) => (
-                  <li key={productionCompany.id}>{productionCompany.name}</li>
+                  <li className="rounded-lg bg-slate-500 bg-opacity-70 mr-4 px-2 text-white leading-10" key={productionCompany.id}>{productionCompany.name}</li>
                 )
               )}
             </ul>
@@ -76,7 +75,7 @@ const MovieDetails: FC = () => {
             <ImageFromPath
               path={movieDetail?.posterPath}
               alt=""
-              className="poster shadow-md rounded-lg "
+              className="h-3/4 object-cover overflow-hidden shadow-md rounded-lg "
             />
           </div>
         </div>

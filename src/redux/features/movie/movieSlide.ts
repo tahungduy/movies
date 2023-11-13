@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Movie } from "types/movie";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Movie } from 'types/movie';
 
 type initialStateProps = {
   movies: Movie[];
@@ -13,7 +13,7 @@ const initialState: initialStateProps = {
 };
 
 const moviesSlice = createSlice({
-  name: "movies",
+  name: 'movies',
   initialState: initialState,
   reducers: {
     addMovies(state, action: PayloadAction<Movie[]>) {

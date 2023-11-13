@@ -1,7 +1,6 @@
-import { RootState } from "redux/store";
+import { RootState } from 'services/store';
 
-export const selectTrendingMovies = (state: RootState) =>
-  state.movies.trendingMovies;
+export const selectTrendingMovies = (state: RootState) => state.movies.trendingMovies;
 
 export const selectMovies = (state: RootState) => state.movies.movies;
 

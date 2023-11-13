@@ -1,5 +1,4 @@
 import { FC, ReactNode } from "react";
-import "./styled.scss";
 
 type Props = {
   className?: string;
@@ -10,7 +9,7 @@ type Props = {
 const Button: FC<Props> = (props: Props) => {
   const { className, childComponent, onClick } = props;
   return (
-    <button className={className ?? `primary-button`} onClick={onClick}>
+    <button className={className} onClick={onClick}>
       {childComponent}
     </button>
   );

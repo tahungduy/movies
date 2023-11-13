@@ -10,8 +10,3 @@ export default {
 // Story 1
 export const DefaultFooter = () => <AppFooter />;
 
-export const CustomContent = () => (
-  <div className="custom-style">
-    <AppFooter />
-  </div>
-);

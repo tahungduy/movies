@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import CarouselItem from "components/CarouselItem";
-import "./styled.scss";
 import { FC, ReactNode, useEffect, useState } from "react";
 import { movieDbServices } from "services/movieDbServices";
 import Card from "components/Card";
@@ -84,29 +83,29 @@ const Home: FC = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="section-title flex-col-center ">Top movies</h1>
+        <h1 className="text-4xl font-bold leading-none text-white font-sans pb-6 text-center">Popular movies</h1>
         {trendingMoviesCarouselItem.length > 0 && (
           <Slide
             arrows
             nextArrow={
-              <FontAwesomeIcon icon={faArrowRight} size="1x" className="ml-4 arrow-icon bg-black-opacity-70" />
+              <FontAwesomeIcon icon={faArrowRight} size="1x" className="ml-4 text-white border border-yellow-500 mr-4 p-4 bg-black bg-opacity-70" />
             }
             prevArrow={
-              <FontAwesomeIcon icon={faArrowLeft} size="1x" className="mr-4 arrow-icon bg-black-opacity-70" />
+              <FontAwesomeIcon icon={faArrowLeft} size="1x" className="ml-4 text-white border border-yellow-500 mr-4 p-4 bg-black bg-opacity-70" />
             }
             duration={5000}
           >
             {trendingMoviesCarouselItem}
           </Slide>
         )}
-        <h1 className="section-title flex-col-center pt-6">Movies</h1>
-        <div className="grid-container">
+        <h1 className="text-4xl font-bold leading-none text-white font-sans pb-6 flex-col-center pt-6 text-centers">Movies</h1>
+        <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-8">
           {movies.length &&
             movies.map((movie: Movie) => {
               return <Card movie={movie} key={movie.id}></Card>;
             })}
         </div>
-        <div className="button-container">
+        <div className="flex mt-4 justify-end">
           <Button
             childComponent={
               <>
@@ -114,7 +113,7 @@ const Home: FC = () => {
               </>
             }
             onClick={loadMoreMovies}
-            className="load-more-button"
+            className="mt-2 inline-block text-white py-2 px-4 rounded-md bg-transparent font-semibold text-xl"
           />
         </div>
       </div>
