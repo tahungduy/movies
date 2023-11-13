@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import ImageFromPath from "components/ImageFromPath";
 import 'tailwindcss/tailwind.css';
+
 const meta: Meta<typeof ImageFromPath> = {
   title: "MovieComponent/ImageFromPath",
   component: ImageFromPath,

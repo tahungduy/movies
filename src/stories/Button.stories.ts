@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import 'tailwindcss/tailwind.css';
+
 import Button from "components/Button";
 const meta: Meta<typeof Button> = {
   title: "MovieComponent/Button",
@@ -23,6 +25,6 @@ export const Primary: Story = {
 export const LoadMore: Story = {
   args: {
     childComponent: "Load More",
-    className: "load-more-button",
+    className: "load-more-button text-black",
   },
 };

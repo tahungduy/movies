@@ -1,5 +1,7 @@
 import AppFooter from 'components/AppFooter';
 import React from 'react';
+import 'tailwindcss/tailwind.css';
+
 export default {
   title: 'AppFooter',
   component: AppFooter,
