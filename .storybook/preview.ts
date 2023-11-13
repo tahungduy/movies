@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/react";
+import AppScreen from "../src/stories/decorator";
 
 const preview: Preview = {
   parameters: {
@@ -10,6 +11,7 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [AppScreen],
 };
 
 export default preview;

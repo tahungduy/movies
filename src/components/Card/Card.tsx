@@ -1,10 +1,11 @@
-import Icon from "components/Icon";
 import "./styled.scss";
 import Button from "components/Button";
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { Movie } from "types/movie";
 import ImageFromPath from "components/ImageFromPath";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export type Props = {
   movie: Movie;
@@ -26,7 +27,7 @@ const Card: FC<Props> = (props) => {
           <Button
             childComponent={
               <>
-                More details <Icon className="fa fa-arrow-right ml-4" />
+                More details <FontAwesomeIcon icon={faArrowRight} size="1x" className="ml-4" />
               </>
             }
             onClick={() => navigate(`movie/${movie.id}`)}

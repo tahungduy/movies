@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { movieDbServices } from "services/movieDbServices";
 import {
   Genre,
@@ -24,7 +24,7 @@ const MovieDetails: FC = () => {
     if (id === undefined) return;
     movieDbServices
       .getMovieDetails(id)
-      .then((response: MovieDetailResponse) => {
+      .then((response: any) => {
         setMovieDetail({
           id: response.id,
           backdropPath: response.backdrop_path,

@@ -20,10 +20,8 @@ class MovieDbServices {
     return response?.data;
   };
 
-  public getMovieDetails = async (
-    movieId: string,
-  ): Promise<MovieDetailResponse> => {
-    const response = await this.client.get<MovieDetailResponse>(
+  public getMovieDetails = async (movieId: string): Promise<any> => {
+    const response = await this.client.get<any>(
       `movie/${movieId}?api_key=${process.env.REACT_APP_API_KEY}`,
     );
     return response?.data;

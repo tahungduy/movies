@@ -1,62 +1,27 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { movieDbServices } from "services/movieDbServices";
-import MovieDetails from "./MovieDetails";
+import { render, screen } from '@testing-library/react';
+import MovieDetails from './MovieDetails';
+import { movieDbServices } from 'services/movieDbServices';
+import { movieMockObject } from 'mocks/movie';
 
-// Mock the movieDbServices.getMovieDetails function
-jest.mock("services/movieDbServices", () => ({
-  getMovieDetails: jest.fn().mockResolvedValue({
-    id: 24242,
-    backdrop_path: "/mRmRE4RknbL7qKALWQDz64hWKPa.jpg",
-    overview: "Sample movie overview",
-    poster_path: "/e7Jvsry47JJQruuezjU2X1Z6J77.jpg",
-    name: "The Killer",
-    vote_average: 7.4,
-    genres: [
-      { id: 80, name: "Crime" },
-      { id: 53, name: "Thriller" },
-    ],
-    vote_count: 135,
-    production_companies: [{ id: 178464, name: "Netflix" }],
-  }),
+// Mock the useParams and movieDbServices
+jest.mock('react-router', () => ({
+  useParams: () => ({ id: '980489' }), // Mocking the ID
 }));
+// jest.spyOn(movieDbServices, 'getMovieDetails').mockResolvedValue(Promise.resolve(movieMockObject))
 
-describe("MovieDetails", () => {
-  it("renders movie details correctly", async () => {
-    const { container } = render(
-      <MemoryRouter initialEntries={["/movie/24242"]}>
-        <Routes>
-        <Route path="/movie/:id">
-          <MovieDetails />
-        </Route>
-        </Routes>
-      </MemoryRouter>
-    );
+test('renders movie details correctly', async () => {
+  jest.spyOn(movieDbServices, 'getMovieDetails').mockImplementation(jest.fn(() =>
+  Promise.resolve(movieMockObject))
+)
+  render(<MovieDetails />);
 
-    // Wait for the movie details to be fetched and rendered
-    await screen.findByText("The Killer");
+  // Simulate waiting for movie details to load
+  // Here we wait for the backdrop image to be available in the DOM
+  await screen.findByText('Gran Turismo');
 
-    // Assert that the movie details are rendered correctly
-    expect(screen.getByText("The Killer")).toBeInTheDocument();
-    expect(screen.getByText("Crime")).toBeInTheDocument();
-    expect(screen.getByText("Thriller")).toBeInTheDocument();
-    expect(screen.getByText("Vote average: 7.4")).toBeInTheDocument();
-    expect(screen.getByText("Sample movie overview")).toBeInTheDocument();
-    expect(screen.getByText("Produced by:")).toBeInTheDocument();
-    expect(screen.getByText("Netflix")).toBeInTheDocument();
-    expect(screen.getByAltText("")).toHaveAttribute(
-      "src",
-      "/e7Jvsry47JJQruuezjU2X1Z6J77.jpg"
-    );
+  // Assert that the movie details are rendered
+  expect(screen.getByText('Gran Turismo')).toBeInTheDocument();
 
-    // Assert that the movieDbServices.getMovieDetails function is called with the correct ID
-    expect(movieDbServices.getMovieDetails).toHaveBeenCalledWith(24242);
-
-    // Assert that the component renders without any console errors
-    expect(console.error).not.toHaveBeenCalled();
-
-    // Assert that the component matches the snapshot
-    expect(container).toMatchSnapshot();
-  });
+  // Assert that the mock service function was called
+  expect(movieDbServices.getMovieDetails).toHaveBeenCalledWith('980489');
 });

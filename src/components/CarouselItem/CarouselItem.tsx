@@ -3,7 +3,8 @@ import "./styled.scss";
 import Button from "components/Button";
 import { Movie } from "types/movie";
 import { useNavigate } from "react-router-dom";
-import Icon from "components/Icon";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import ImageFromPath from "components/ImageFromPath";
 export type CarouselItemProps = {
   movie: Movie;
@@ -26,7 +27,7 @@ const CarouselItem: FC<CarouselItemProps> = (props: CarouselItemProps) => {
           onClick={() => navigate(`movie/${id}`)}
           childComponent={
             <>
-              More details <Icon className="fa fa-arrow-right ml-4" />
+              More details <FontAwesomeIcon icon={faArrowRight} size="1x" className="ml-4" />
             </>
           }
         />

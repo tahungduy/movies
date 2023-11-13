@@ -15,7 +15,8 @@ import { moviesAction } from "redux/features/movie/movieSlide";
 import { GetMovieResponse, Movie, MovieResponse } from "types/movie";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import Icon from "components/Icon";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Home: FC = () => {
   const movies = useAppSelector(selectMovies);
   const trendingMovies = useAppSelector(selectTrendingMovies);
@@ -87,12 +88,11 @@ const Home: FC = () => {
         {trendingMoviesCarouselItem.length > 0 && (
           <Slide
             arrows
-
             nextArrow={
-              <i className="fa fa-arrow-right arrow-icon bg-black-opacity-70"></i>
+              <FontAwesomeIcon icon={faArrowRight} size="1x" className="ml-4 arrow-icon bg-black-opacity-70" />
             }
             prevArrow={
-              <i className="fa fa-arrow-left arrow-icon bg-black-opacity-70" ></i>
+              <FontAwesomeIcon icon={faArrowLeft} size="1x" className="mr-4 arrow-icon bg-black-opacity-70" />
             }
             duration={5000}
           >
@@ -110,7 +110,7 @@ const Home: FC = () => {
           <Button
             childComponent={
               <>
-                View more <Icon className="fa fa-arrow-right text-xs ml-4" />
+                View more <FontAwesomeIcon icon={faArrowRight} size="1x" className="ml-4" />
               </>
             }
             onClick={loadMoreMovies}
