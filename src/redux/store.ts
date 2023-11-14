@@ -1,9 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import moviesReducer from '../redux/features/movie/movieSlide';
+import moviesReducer from './features/movie/movieSlide';
 export const store = configureStore({
-  reducer: {
-    movies: moviesReducer,
-  },
+	reducer: {
+		movies: moviesReducer,
+	},
 });
 
 export type AppDispatch = typeof store.dispatch;

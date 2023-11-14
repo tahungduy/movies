@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Card from 'components/Card';
-import { Movie } from 'types/movie';
+import { Movie } from 'models/movie';
 import 'tailwindcss/tailwind.css';
 
 const sampleMovie: Movie = {
@@ -27,6 +27,6 @@ type Story = StoryObj<typeof Card>;
 
 export const CardStory: Story = {
   args: {
-    movie: sampleMovie,
+    movie: sampleMovie
   },
 };

@@ -30,7 +30,8 @@
     "vite-plugin-env-compatible": "^1.1.1",
     "vite-plugin-svgr": "^4.1.0",
     "vite-tsconfig-paths": "^4.2.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "7.5.3",
@@ -59,7 +60,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky install",
-    "format": "prettier --write src//**/*.{js,ts,jsx,json}"
+    "format": "prettier --config .prettierrc --write src//**/*.{js,ts,jsx,json}"
   },
   "eslintConfig": {
     "extends": [

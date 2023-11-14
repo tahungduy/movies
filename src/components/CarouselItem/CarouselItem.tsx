@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Button from "components/Button";
-import { Movie } from "types/movie";
+import { Movie } from "models/movie";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,7 @@ const CarouselItem: FC<CarouselItemProps> = (props: CarouselItemProps) => {
   return (
     <div>
       <div className="flex justify-center">
-        <ImageFromPath className="h-3/4 w-3/4" path={backdropPath} alt={name} />
+        <ImageFromPath className="h-3/5 w-3/5" path={backdropPath} alt={name} />
       </div>
       <div className="fixed top-60 transform -translate-y-1/2 ml-32 p-4 bg-black bg-opacity-70 max-w-lg">
         <h3 className="text-white font-sans text-4xl font-bold leading-none m-4 ml-0">{name}</h3>
@@ -24,7 +24,7 @@ const CarouselItem: FC<CarouselItemProps> = (props: CarouselItemProps) => {
         </div>
         <Button
           onClick={() => navigate(`movie/${id}`)}
-          className="mt-2 inline-block bg-yellow-500 text-white font-bold py-2 px-4 rounded-md"
+          className="mt-2 inline-block bg-yellow-500 text-white font-bold py-2 px-4 rounded"
           childComponent={
             <>
               More details <FontAwesomeIcon icon={faArrowRight} size="1x" className="ml-4" />

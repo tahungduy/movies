@@ -1,36 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import CarouselItem from "components/CarouselItem";
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import { movieDbServices } from "services/movieDbServices";
 import Card from "components/Card";
-import Button from "components/Button";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import {
-  selectCurrentPage,
-  selectMovies,
+  selectPopularMovies,
   selectTrendingMovies,
 } from "redux/features/movie/movieSelector";
 import { moviesAction } from "redux/features/movie/movieSlide";
-import { GetMovieResponse, Movie, MovieResponse } from "types/movie";
+import { GetMovieResponse, Movie, MovieResponse } from "models/movie";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const Home: FC = () => {
-  const movies = useAppSelector(selectMovies);
+const Home: FunctionComponent = () => {
+  const popularMovies = useAppSelector(selectPopularMovies);
   const trendingMovies = useAppSelector(selectTrendingMovies);
-  const currentPage = useAppSelector(selectCurrentPage);
   const [isMovieLoading, setIsMovieLoading] = useState<boolean>(false);
   const [trendingMoviesCarouselItem, setTrendingMoviesCarouselItem] = useState<
     ReactNode[]
   >([]);
 
+  const arrows = {
+    leftArrow: <FontAwesomeIcon icon={faArrowLeft} size="1x" className="ml-4 text-white border border-yellow-500 mr-4 p-4 bg-black bg-opacity-70" />,
+    rightArrow: <FontAwesomeIcon icon={faArrowRight} size="1x" className="ml-4 text-white border border-yellow-500 mr-4 p-4 bg-black bg-opacity-70" />,
+  }
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (trendingMovies.length && movies.length) return;
+    if (trendingMovies.length && popularMovies.length) return;
     getTrendingMovies();
-    getMovies();
+    getPopularMovies();
   }, []);
 
   useEffect(() => {
@@ -43,18 +45,19 @@ const Home: FC = () => {
     }
   }, [trendingMovies]);
 
-  const getMovies = async () => {
+  const getPopularMovies = async () => {
     if (isMovieLoading) return;
     await setIsMovieLoading(true);
-    const nextPage = currentPage + 1;
-    dispatch(moviesAction.setPage(nextPage));
+    dispatch(moviesAction.setPage(1));
     movieDbServices
-      .getMovies(nextPage)
+      .getMovies(1)
       .then((response: GetMovieResponse) => {
-        dispatch(moviesAction.addMovies(mapMovieResponse(response.results)));
+        dispatch(moviesAction.addPopularMovies(mapMovieResponse(response.results)));
         setIsMovieLoading(false);
       })
-      .catch((error) => { });
+      .catch((error) => {
+        console.error("Error fetching movies popular: ", error)
+      });
   };
 
   const getTrendingMovies = () => {
@@ -62,6 +65,8 @@ const Home: FC = () => {
       dispatch(
         moviesAction.addTrendingMovies(mapMovieResponse(response.results))
       );
+    }).catch((error) => {
+      console.error("Error fetching movies trending: ", error)
     });
   };
 
@@ -76,45 +81,48 @@ const Home: FC = () => {
     }));
   };
 
-  const loadMoreMovies = async () => {
-    getMovies();
-  };
-
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-4xl font-bold leading-none text-white font-sans pb-6 text-center">Popular movies</h1>
         {trendingMoviesCarouselItem.length > 0 && (
           <Slide
             arrows
             nextArrow={
-              <FontAwesomeIcon icon={faArrowRight} size="1x" className="ml-4 text-white border border-yellow-500 mr-4 p-4 bg-black bg-opacity-70" />
+              arrows.rightArrow
             }
             prevArrow={
-              <FontAwesomeIcon icon={faArrowLeft} size="1x" className="ml-4 text-white border border-yellow-500 mr-4 p-4 bg-black bg-opacity-70" />
+              arrows.leftArrow
             }
             duration={5000}
           >
             {trendingMoviesCarouselItem}
           </Slide>
         )}
-        <h1 className="text-4xl font-bold leading-none text-white font-sans pb-6 flex-col-center pt-6 text-centers">Movies</h1>
-        <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-8">
-          {movies.length &&
-            movies.map((movie: Movie) => {
-              return <Card movie={movie} key={movie.id}></Card>;
-            })}
-        </div>
-        <div className="flex mt-4 justify-end">
-          <Button
-            childComponent={
-              <>
-                View more <FontAwesomeIcon icon={faArrowRight} size="1x" className="ml-4" />
-              </>
-            }
-            onClick={loadMoreMovies}
-            className="mt-2 inline-block text-white py-2 px-4 rounded-md bg-transparent font-semibold text-xl"
-          />
+        <h1 className="text-4xl font-bold leading-none text-white font-sans py-6 text-center">Popular Movies</h1>
+        <div className="px-4 ">
+          {popularMovies.slice(0, 20).length > 0 && (
+            <Slide
+              arrows
+              autoplay={false}
+              infinite
+              slidesToShow={5}
+              slidesToScroll={5}
+              cssClass="items-center"
+              nextArrow={
+                arrows.rightArrow
+              }
+              prevArrow={
+                arrows.leftArrow
+              }
+            >
+              {
+                popularMovies.length &&
+                popularMovies.map((movie: Movie) => {
+                  return <div className="p-4 max-w-xs flex justify-center" key={movie.id}><Card movie={movie} /></div>;
+                })
+              }
+            </Slide>
+          )}
         </div>
       </div>
     </>
