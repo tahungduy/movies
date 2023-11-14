@@ -4,7 +4,7 @@ import { Movie } from 'models/movie';
 import 'tailwindcss/tailwind.css';
 
 const sampleMovie: Movie = {
-  id: '1',
+  id: 1,
   name: 'Sample Movie',
   posterPath: '/gbOnTa2eTbCAznHiusxHI5oA78c.jpg',
   rating: 7.5,

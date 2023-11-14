@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios';
 import buildClient from './Api';
 import { GetMovieResponse, GetMovieDetailResponse } from 'models/movie';
+import { MovieDetailSchema, ResPageMoviesSchema } from 'models/schema';
 class MovieDbServices {
 	private readonly client: AxiosInstance;
 	constructor(client: AxiosInstance) {
@@ -8,19 +9,25 @@ class MovieDbServices {
 	}
 	public getTrendingMovies = async (): Promise<GetMovieResponse> => {
 		const response = await this.client.get<GetMovieResponse>(`trending/movie/day?language=en-US`);
-		return response?.data;
+		const newRes = ResPageMoviesSchema.safeParse(response.data);
+		if (!newRes.success) throw Error('Somthing went wrong.');
+		return newRes?.data;
 	};
 
 	public getMovies = async (page: number): Promise<GetMovieResponse> => {
 		const response = await this.client.get<GetMovieResponse>(`discover/movie?page=${page}&sort_by=popularity.desc`);
-		return response?.data;
+		const newRes = ResPageMoviesSchema.safeParse(response.data);
+		if (!newRes.success) throw Error('Somthing went wrong.');
+		return newRes?.data;
 	};
 
-	public getMovieDetails = async (movieId: string): Promise<any> => {
+	public getMovieDetails = async (movieId: string): Promise<GetMovieDetailResponse> => {
 		const response = await this.client.get<GetMovieDetailResponse>(
 			`movie/${movieId}?append_to_response=videos,credits`
 		);
-		return response?.data;
+		const newRes = MovieDetailSchema.safeParse(response.data);
+		if (!newRes.success) throw Error('Somthing went wrong.');
+		return newRes?.data;
 	};
 }
 

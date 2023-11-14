@@ -73,7 +73,7 @@ const Home: FunctionComponent = () => {
   const mapMovieResponse = (data: MovieResponse[]) => {
     return data.map((movie: MovieResponse) => ({
       id: movie.id,
-      name: movie.name || movie.title,
+      name: movie.title,
       description: movie.overview,
       backdropPath: movie.backdrop_path,
       posterPath: movie.poster_path,

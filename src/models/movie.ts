@@ -1,51 +1,22 @@
 export interface Movie {
-	id: string;
+	id: number;
 	name: string;
 	rating: number;
 	description: string;
-	posterPath: string;
-	backdropPath: string;
-}
-
-export interface MovieResponse {
-	id: string;
-	adult: boolean;
-	backdrop_path: string;
-	title: string;
-	name: string;
-	original_language: string;
-	original_title: string;
-	overview: string;
-	poster_path: string;
-	popularity: number;
-	release_date: string;
-	video: boolean;
-	vote_average: number;
-	vote_count: number;
-}
-
-export interface GetMovieResponse {
-	page: number;
-	total_pages: number;
-	total_results: number;
-	results: MovieResponse[];
+	posterPath?: string;
+	backdropPath?: string;
 }
 
 export interface Genre {
-	id: string;
+	id: number;
 	name: string;
 }
 
 export interface ProductionCompany {
-	id: string;
-	logo_path: string | null;
+	id: number;
+	logo_path?: string | null;
 	name: string;
 	origin_country: string;
-}
-
-export interface ProductionCountry {
-	iso_3166_1: string;
-	name: string;
 }
 
 export interface SpokenLanguage {
@@ -55,60 +26,43 @@ export interface SpokenLanguage {
 }
 
 export interface Actor {
-	cast_id: string;
+	cast_id: number;
 	name: string;
-	order: number;
-	profile_path: string;
+	profile_path?: string | null;
 }
 
 export interface Credits {
 	cast: Actor[];
 }
 
-export interface MovieResponse {
-	id: string;
-	adult: boolean;
-	backdrop_path: string;
+export interface MovieDetail extends Movie {
+	genres: Genre[];
+	productionCompanies: ProductionCompany[];
+	spokenLanguages?: SpokenLanguage[];
+	actors?: Actor[];
+}
+
+export type MovieResponse = {
+	id: number;
+	backdrop_path?: string;
 	title: string;
-	name: string;
-	original_language: string;
 	original_title: string;
 	overview: string;
-	poster_path: string;
-	popularity: number;
-	release_date: string;
-	video: boolean;
+	poster_path?: string;
 	vote_average: number;
 	vote_count: number;
-}
+};
 
+export interface GetMovieResponse {
+	page: number;
+	total_pages: number;
+	total_results: number;
+	results: MovieResponse[];
+}
 export interface GetMovieDetailResponse extends MovieResponse {
-	budget: number;
 	genres: Genre[];
-	homepage: string | null;
-	imdb_id: string;
-	production_companies: ProductionCompany[];
-	production_countries: ProductionCountry[];
-	release_date: string;
-	runtime: number;
-	spoken_languages: SpokenLanguage[];
-	status: string;
-	tagline: string;
 	credits?: Credits;
-}
-
-export interface MovieDetail extends Movie {
-	budget?: number;
-	genres: Genre[];
-	homepage?: string | null;
-	imdbId?: string;
-	productionCompanies: ProductionCompany[];
-	productionCountries?: ProductionCountry[];
-	releaseDate?: string;
-	runtime?: number;
-	spokenLanguages?: SpokenLanguage[];
-	status?: string;
-	tagline?: string;
-	voteCount: number;
-	actors?: Actor[];
+	production_companies: ProductionCompany[];
+	original_language: string;
+	spoken_languages: SpokenLanguage[];
 }

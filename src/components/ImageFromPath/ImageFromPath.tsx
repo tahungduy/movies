@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import dummyImage from 'assets/dummy-image.png';
 type Props = {
-  path: string | undefined;
+  path: string | null | undefined;
   className: string;
   alt: string;
 };

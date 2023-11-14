@@ -39,34 +39,18 @@ const MovieDetails: FC = () => {
     movieDbServices
       .getMovieDetails(id)
       .then((response: GetMovieDetailResponse) => {
-
         setMovieDetail({
           id: response.id,
           backdropPath: response.backdrop_path,
           description: response.overview,
           posterPath: response.poster_path,
-          name: response.name || response.title,
+          name: response.title,
           rating: response.vote_average,
           genres: response.genres,
-          voteCount: response.vote_count,
           productionCompanies: response.production_companies,
           spokenLanguages: response.spoken_languages,
           actors: response.credits?.cast
         });
-        console.log({
-          id: response.id,
-          backdropPath: response.backdrop_path,
-          description: response.overview,
-          posterPath: response.poster_path,
-          name: response.name || response.title,
-          rating: response.vote_average,
-          genres: response.genres,
-          voteCount: response.vote_count,
-          productionCompanies: response.production_companies,
-          spokenLanguages: response.spoken_languages,
-          actors: response.credits?.cast
-        });
-
       })
       .catch((error) => console.error("Error fetching movie details: ", error));
   };
